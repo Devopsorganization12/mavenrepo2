@@ -34,12 +34,12 @@ sh 'mvn sonar:sonar'
 }
 stage('nexus'){
 steps{
-nexusArtifactUploader artifacts: [[artifactId: 'maven-compiler-plugin', classifier: '', file: 'target/studentapp-2.5-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.jdevs', nexusUrl: '13.127.91.122:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '2.5-SNAPSHOT'
+nexusArtifactUploader artifacts: [[artifactId: 'maven-compiler-plugin', classifier: '', file: 'target/studentapp-2.5-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.jdevs', nexusUrl: '65.0.104.53:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '2.5-SNAPSHOT'
 }
 }
 stage('tomcat'){
 steps{
-deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.110.174.71:8080')], contextPath: null, war: '**/*.war'
+deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://15.207.19.76:8080')], contextPath: null, war: '**/*.war'
 }
 }
 stage('email'){
@@ -48,4 +48,5 @@ emailext body: '$DEFAULT_CONTENT', postsendScript: '$DEFAULT_PRESEND_SCRIPT', pr
 }
 }
 }
+  
 }
